@@ -1,0 +1,5 @@
+.idea/
+venv/
+django_template/
+tester1.py
+tester2.py
