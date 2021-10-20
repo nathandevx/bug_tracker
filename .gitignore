@@ -1,5 +1,6 @@
 .idea/
 venv/
 django_template/
+temp/
 tester1.py
 tester2.py
