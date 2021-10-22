@@ -17,6 +17,7 @@ load_dotenv(dotenv_path=dotenv_path)
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'templates'
 DB_DIR = BASE_DIR / 'db.sqlite3'
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'django-insecure-&th7f&(_3a6=f4g+mxm(tdtu%%u8w(xxl&bc=77=h%ut^tl8)v'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -85,4 +86,6 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [STATIC_PATH]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
