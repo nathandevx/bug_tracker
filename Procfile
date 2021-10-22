@@ -1,2 +1,2 @@
 release: python manage.py check --deploy
-web: gunicorn project.wsgi
+web: gunicorn bug_tracker.wsgi
