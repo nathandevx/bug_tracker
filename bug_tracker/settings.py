@@ -9,10 +9,10 @@ sentry_sdk.init(
 
 from pathlib import Path
 from dotenv import load_dotenv
+from .constants import dotenv_path
 import os
 
-path = '/home/brickspy/PycharmProjects/bug_tracker/temp/.env'
-load_dotenv(dotenv_path=path)
+load_dotenv(dotenv_path=dotenv_path)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'templates'
