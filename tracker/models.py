@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext as _
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class TimestampMixin(models.Model):
@@ -31,25 +32,25 @@ class Tracker(TimestampMixin):
 
 class Ticket(TimestampMixin):
 	# TYPE CHOICES
-	SUGGESTION = 'SUGGESTION'
-	CODE = 'CODE'
+	FEATURE = 'FEATURE'
+	BUG = 'BUG'
 	UI = 'UI'
 	TYPE_CHOICES = [
-		(SUGGESTION, 'Project suggestion'),
-		(CODE, 'Code'),
+		(BUG, 'Bug'),
 		(UI, 'User-Interface'),
+		(FEATURE, 'Feature'),
 	]  # (stored, displayed)
 
 	# STATE CHOICES
 	OPEN = 'OPEN'
 	CLOSED = 'CLOSED'
-	PENDING = 'PENDING'
-	SOLVED = 'SOLVED'
+	IN_PROGRESS = 'IN PROGRESS'
+	RESOLVED = 'RESOLVED'
 	STATUS_CHOICES = [
 		(OPEN, 'Open'),
 		(CLOSED, 'Closed'),
-		(PENDING, 'Pending'),
-		(SOLVED, 'Solved'),
+		(IN_PROGRESS, 'In progress'),
+		(RESOLVED, 'Resolved'),
 	]
 
 	# PRIORITY CHOICES
@@ -65,17 +66,21 @@ class Ticket(TimestampMixin):
 	]
 	name = models.CharField(verbose_name=_("Name"), max_length=20)
 	description = models.TextField(verbose_name=_("Description"), max_length=500)
-	type = models.CharField(verbose_name=_("Type"), default=SUGGESTION, max_length=10, choices=TYPE_CHOICES)
+	type = models.CharField(verbose_name=_("Type"), default=FEATURE, max_length=10, choices=TYPE_CHOICES)
 	status = models.CharField(verbose_name=_("Status"), default=OPEN, max_length=10, choices=STATUS_CHOICES)
 	priority = models.CharField(verbose_name=_("Priority"), default=NORMAL, max_length=10, choices=PRIORITY_CHOICES)
 	assignees = models.ManyToManyField(verbose_name=_("Assignees"), to=settings.AUTH_USER_MODEL)
 	tracker = models.ForeignKey(verbose_name=_("Tracker"), to=Tracker, on_delete=models.CASCADE)
+	votes = models.IntegerField(verbose_name=_("Votes"), default=0)
+	vote_profiles = models.ManyToManyField(verbose_name=_("Vote profiles"), to=settings.AUTH_USER_MODEL)
+
+	# todo add attachment file field
 
 	def __str__(self):
 		return self.name
 
 	class Meta:
-		ordering = ['priority', 'name']
+		ordering = ['name']
 		verbose_name = _("Ticket")
 		verbose_name_plural = _("Tickets")
 
