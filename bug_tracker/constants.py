@@ -1,1 +1,1 @@
-dotenv_path = '/home/brickspy/PycharmProjects/project/temp/.env'  # todo change project name
+dotenv_path = '/home/brickspy/PycharmProjects/bug_tracker/temp/.env'
