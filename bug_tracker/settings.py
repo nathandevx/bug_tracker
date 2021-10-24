@@ -1,11 +1,11 @@
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-sentry_sdk.init(
-    dsn="https://examplePublicKey@o0.ingest.sentry.io/0",
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True,
-)
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
+# sentry_sdk.init(
+#     dsn="https://examplePublicKey@o0.ingest.sentry.io/0",
+#     integrations=[DjangoIntegration()],
+#     traces_sample_rate=1.0,
+#     send_default_pii=True,
+# )
 
 from pathlib import Path
 from dotenv import load_dotenv
