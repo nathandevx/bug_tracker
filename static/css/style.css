@@ -5,6 +5,10 @@ body {
     font-size: 1.2rem;
 }
 
+.width {
+    width: 80%;
+}
+
 .form-width {
     width: 90%;
 }
