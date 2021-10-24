@@ -4,5 +4,5 @@ from tracker.views import tracker
 
 app_name = 'tracker'
 urlpatterns = [
-	path('list/', tracker.TrackerListView.as_view(), name='tracker-list'),
+	path('list/', tracker.TrackerListView.as_view(), name='list'),
 ]
