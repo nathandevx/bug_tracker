@@ -17,14 +17,14 @@ class TimestampMixin(models.Model):
 
 
 class Tracker(TimestampMixin):
-	name = models.CharField(verbose_name=_("Name"), max_length=20)
-	description = models.TextField(verbose_name=_("Description"), max_length=500)
+	title = models.CharField(verbose_name=_("Title"), default='', max_length=20)
+	description = models.TextField(verbose_name=_("Description"), default='', max_length=500)
 
 	def __str__(self):
-		return self.name
+		return self.title
 
 	class Meta:
-		ordering = ['name']
+		ordering = ['title']
 		verbose_name = _("Tracker")
 		verbose_name_plural = _("Trackers")
 
@@ -63,9 +63,9 @@ class Ticket(TimestampMixin):
 		(NORMAL, 'Normal'),
 		(LOW, 'Low'),
 	]
-	name = models.CharField(verbose_name=_("Name"), max_length=20)
-	description = models.TextField(verbose_name=_("Description"), max_length=500)
-	type = models.CharField(verbose_name=_("Type"), default=FEATURE, max_length=11, choices=TYPE_CHOICES)
+	title = models.CharField(verbose_name=_("Title"), default='', max_length=20)
+	description = models.TextField(verbose_name=_("Description"), default='', max_length=500)
+	type = models.CharField(verbose_name=_("Type"), default=BUG, max_length=11, choices=TYPE_CHOICES)
 	status = models.CharField(verbose_name=_("Status"), default=OPEN, max_length=11, choices=STATUS_CHOICES)
 	priority = models.CharField(verbose_name=_("Priority"), default=NORMAL, max_length=8, choices=PRIORITY_CHOICES)
 	assignees = models.ManyToManyField(verbose_name=_("Assignees"), to=settings.AUTH_USER_MODEL, related_name='assignees')
@@ -76,23 +76,23 @@ class Ticket(TimestampMixin):
 	# todo add attachment file field
 
 	def __str__(self):
-		return self.name
+		return self.title
 
 	class Meta:
-		ordering = ['name']
+		ordering = ['title']
 		verbose_name = _("Ticket")
 		verbose_name_plural = _("Tickets")
 
 
 class TicketComment(TimestampMixin):
-	name = models.CharField(verbose_name=_("Name"), max_length=20)
-	description = models.TextField(verbose_name=_("Description"), max_length=500)
+	title = models.CharField(verbose_name=_("Title"), default='', max_length=20)
+	comment = models.TextField(verbose_name=_("Comment"), default='', max_length=500)
 	ticket = models.ForeignKey(verbose_name=_("Ticket"), to=Ticket, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.name
+		return self.title
 
 	class Meta:
-		ordering = ['name']
+		ordering = ['title']
 		verbose_name = _("Ticket comment")
 		verbose_name_plural = _("Ticket comments")
