@@ -1,6 +1,8 @@
 # from django.urls import path
-# from home import views
+# from tracker.views import tracker
 #
-# app_name = 'home'
+#
+# app_name = 'tracker'
 # urlpatterns = [
+# 	path('list/', tracker.TrackerListView, name='tracker-list'),
 # ]
