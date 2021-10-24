@@ -9,7 +9,7 @@ class GroupsRequiredMixin:
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            if request.user.in_groups(self.groups, request.user):
+            if request.user.groups.filter(name__in=self.groups).exists():
                 return super().dispatch(request, *args, **kwargs)
             else:
                 raise PermissionDenied  # if not in group
