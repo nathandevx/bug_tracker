@@ -4,8 +4,8 @@ from django.utils.translation import gettext as _
 
 
 class TimestampMixin(models.Model):
-	creator = models.ForeignKey(verbose_name=_("Creator"), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	updater = models.ForeignKey(verbose_name=_("Updater"), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	creator = models.ForeignKey(verbose_name=_("Creator"), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)_creator')
+	updater = models.ForeignKey(verbose_name=_("Updater"), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)_updater')
 	created_at = models.DateTimeField(verbose_name=_("Date created"), auto_now_add=True)
 	updated_at = models.DateTimeField(verbose_name=_("Date updated"), auto_now=True)
 
@@ -68,10 +68,10 @@ class Ticket(TimestampMixin):
 	type = models.CharField(verbose_name=_("Type"), default=FEATURE, max_length=10, choices=TYPE_CHOICES)
 	status = models.CharField(verbose_name=_("Status"), default=OPEN, max_length=10, choices=STATUS_CHOICES)
 	priority = models.CharField(verbose_name=_("Priority"), default=NORMAL, max_length=10, choices=PRIORITY_CHOICES)
-	assignees = models.ManyToManyField(verbose_name=_("Assignees"), to=settings.AUTH_USER_MODEL)
+	assignees = models.ManyToManyField(verbose_name=_("Assignees"), to=settings.AUTH_USER_MODEL, related_name='assignees')
 	tracker = models.ForeignKey(verbose_name=_("Tracker"), to=Tracker, on_delete=models.CASCADE)
 	votes = models.IntegerField(verbose_name=_("Votes"), default=0)
-	vote_profiles = models.ManyToManyField(verbose_name=_("Vote profiles"), to=settings.AUTH_USER_MODEL)
+	vote_profiles = models.ManyToManyField(verbose_name=_("Vote profiles"), to=settings.AUTH_USER_MODEL, related_name='vote_profiles')
 
 	# todo add attachment file field
 
