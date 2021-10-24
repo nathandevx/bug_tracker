@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.shortcuts import reverse
 from django.utils.translation import gettext as _
 
 
@@ -22,6 +23,13 @@ class Tracker(TimestampMixin):
 
 	def __str__(self):
 		return self.title
+
+	@staticmethod
+	def get_list_url():
+		return reverse('tracker:list')
+
+	def get_absolute_url(self):
+		return reverse('tracker:detail', kwargs={'pk': self.pk})
 
 	class Meta:
 		ordering = ['title']
