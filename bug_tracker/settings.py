@@ -86,6 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # General
 AUTH_USER_MODEL = 'users.User'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Localization
 LANGUAGE_CODE = 'en-us'
