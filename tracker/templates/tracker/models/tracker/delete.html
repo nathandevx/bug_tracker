@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block title %}Delete Tracker{% endblock %}
+{% load crispy_forms_tags %}
 
 
 {% block contents %}
 
-    <div class="container-fluid form-width">
-        <h1 class="text-center">Delete Tracker</h1>
-        <p class="text-center">Are you sure you want to delete this?</p>
+    <div class="container-fluid text-center form-width">
+        <h1>Delete Tracker</h1>
+        <p>Are you sure you want to delete this?</p>
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <div class="form-group">
-                <button class="btn btn-danger" type="submit">Delete</button>
-            </div>
+            <button class="btn btn-danger m-3" type="submit">Delete</button>
         </form>
-        <a href="/" class="btn btn-secondary">Cancel</a>  {# todo change destination url #}
+        <a href="{{ object.get_absolute_url }}" class="btn btn-secondary">Cancel</a>  {# todo change destination url #}
     </div>
 
 {% endblock %}

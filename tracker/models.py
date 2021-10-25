@@ -28,8 +28,18 @@ class Tracker(TimestampMixin):
 	def get_list_url():
 		return reverse('tracker:list')
 
+	@staticmethod
+	def get_create_url():
+		return reverse('tracker:create')
+
 	def get_absolute_url(self):
 		return reverse('tracker:detail', kwargs={'pk': self.pk})
+
+	def get_update_url(self):
+		return reverse('tracker:update', kwargs={'pk': self.pk})
+
+	def get_delete_url(self):
+		return reverse('tracker:delete', kwargs={'pk': self.pk})
 
 	class Meta:
 		ordering = ['title']

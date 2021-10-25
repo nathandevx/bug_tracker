@@ -10,6 +10,9 @@ class TrackerListView(GroupsRequiredMixin, ListView):
 	template_name = 'tracker/models/tracker/list.html'
 	groups = [SUPERUSER, ADMIN, DEVELOPER, REQUESTER, VIEWER]
 	queryset = Tracker.objects.all()
+	extra_context = {
+		'model': Tracker
+	}
 
 
 class TrackerCreateView(GroupsRequiredMixin, CreateView):
