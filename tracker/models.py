@@ -12,7 +12,7 @@ class TimestampMixin(models.Model):
 
 	class Meta:
 		abstract = True
-		ordering = ['updated_at']
+		# ordering = ['updated_at']
 		verbose_name = _("TimestampMixin")
 		verbose_name_plural = _("TimestampMixins")
 
@@ -20,9 +20,6 @@ class TimestampMixin(models.Model):
 class Tracker(TimestampMixin):
 	title = models.CharField(verbose_name=_("Title"), default='', max_length=20)
 	description = models.TextField(verbose_name=_("Description"), default='', max_length=500)
-
-	def __str__(self):
-		return self.title
 
 	@staticmethod
 	def get_list_url():
@@ -41,8 +38,11 @@ class Tracker(TimestampMixin):
 	def get_delete_url(self):
 		return reverse('tracker:delete', kwargs={'pk': self.pk})
 
+	def __str__(self):
+		return self.title
+
 	class Meta:
-		ordering = ['title']
+		# ordering = ['title']
 		verbose_name = _("Tracker")
 		verbose_name_plural = _("Trackers")
 
@@ -90,14 +90,13 @@ class Ticket(TimestampMixin):
 	tracker = models.ForeignKey(verbose_name=_("Tracker"), to=Tracker, on_delete=models.CASCADE)
 	votes = models.IntegerField(verbose_name=_("Votes"), default=0)
 	vote_profiles = models.ManyToManyField(verbose_name=_("Vote profiles"), to=settings.AUTH_USER_MODEL, related_name='vote_profiles')
-
 	# todo add attachment file field
 
 	def __str__(self):
 		return self.title
 
 	class Meta:
-		ordering = ['title']
+		# ordering = ['title']
 		verbose_name = _("Ticket")
 		verbose_name_plural = _("Tickets")
 
@@ -111,6 +110,6 @@ class TicketComment(TimestampMixin):
 		return self.title
 
 	class Meta:
-		ordering = ['title']
+		# ordering = ['title']
 		verbose_name = _("Ticket comment")
 		verbose_name_plural = _("Ticket comments")
