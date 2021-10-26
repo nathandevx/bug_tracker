@@ -4,15 +4,13 @@
 
 {% block contents %}
 
-    <div class="container-fluid width">
-        <div class="text-center">
-            <h1>Tracker Detail</h1>
-            <h3>{{ object }}</h3>
-            <p>{{ object.description }}</p>
-            <a class="btn btn-primary" href="{{ object.get_list_url }}">List of Trackers</a>
-            <a class="btn btn-success" href="{{ object.get_update_url }}">Update Tracker</a>
-            <a class="btn btn-danger" href="{{ object.get_delete_url }}">Delete Tracker</a>
-        </div>
+    <div class="container-fluid text-center width">
+        <h1>Tracker Detail</h1>
+        <h3>{{ object }}</h3>
+        <p>Description: {{ object.description }}</p>
+        <a class="btn btn-primary" href="{{ object.get_list_url }}">List of Trackers</a>
+        <a class="btn btn-success" href="{{ object.get_update_url }}">Update Tracker</a>
+        <a class="btn btn-danger" href="{{ object.get_delete_url }}">Delete Tracker</a>
     </div>
 
 {% endblock %}
