@@ -9,6 +9,7 @@ class TrackerListView(GroupsRequiredMixin, ListView):
 	model = Tracker
 	template_name = 'tracker/models/tracker/list.html'
 	groups = [SUPERUSER, ADMIN, DEVELOPER, REQUESTER, VIEWER]
+	paginate_by = PAG_BY
 	queryset = Tracker.objects.all()
 	extra_context = {
 		'model': Tracker
