@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from bug_tracker.constants import ADMINS, ALL_GROUPS, PAG_BY
-from tracker.models import Tracker
+from tracker.models import Tracker, Ticket
 from tracker.model_forms import TrackerModelForm
 from tracker.mixins import GroupsRequiredMixin
 
@@ -11,7 +11,7 @@ class TrackerListView(GroupsRequiredMixin, ListView):
 	groups = ALL_GROUPS
 	paginate_by = PAG_BY
 	extra_context = {
-		'model': Tracker
+		'model': Tracker,
 	}
 
 

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Ticket Detail{% endblock %}
+
+
+{% block contents %}
+
+    <div class="container-fluid text-center width">
+        <h1>Ticket Detail</h1>
+        <h3>{{ object }}</h3>
+        <p>Description: {{ object.description }}</p>
+        <div>
+            <a class="btn btn-primary" href="{% url 'tracker:ticket-list' object.tracker.pk %}">List of Tickets</a>
+            <a class="btn btn-success" href="{{ object.get_update_url }}">Update Ticket</a>
+            <a class="btn btn-danger" href="{{ object.get_delete_url }}">Delete Ticket</a>
+        </div>
+        <br>
+        <a class="btn btn-primary mb-3" href="{% url 'tracker:ticket-comment-create' object.tracker.pk object.pk %}">Create Comment</a>
+        <h3>Ticket Comments</h3>
+        {% if ticket.ticketcomment_set.all %}
+            {% for comment in ticket.ticketcomment_set.all %}
+                {% if user == comment.creator %}
+                    <p>
+                        {{ comment.title }}
+                        <a href="{% url 'tracker:ticket-comment-update' object.tracker.pk object.pk comment.pk%}">Update</a>
+                        <a href="{% url 'tracker:ticket-comment-delete' object.tracker.pk object.pk comment.pk%}">Delete</a>
+                    </p>
+                {% else %}
+                    <p>{{ comment.title }}</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No comments!</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

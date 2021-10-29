@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Create Tracker{% endblock %}
+{% block title %}Create Comment{% endblock %}
 {% load crispy_forms_tags %}
 
 
 {% block contents %}
 
     <div class="container-fluid form-width">
-        <h1 class="text-center">Create Tracker</h1>
+        <h1 class="text-center">Create Comment</h1>
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}

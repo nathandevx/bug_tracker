@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Comment Update{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block contents %}
+
+<div class="container-fluid form-width">
+    <h1 class="text-center">Comment Update</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button class="btn btn-primary" type="submit" value="Save">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

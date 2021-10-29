@@ -12,10 +12,12 @@ class TrackerModelForm(forms.ModelForm):
 class TicketModelForm(forms.ModelForm):
 	class Meta:
 		model = Ticket
-		exclude = TIMESTAMP_EXCLUDE
+		_exclude = ['assignees', 'tracker', 'votes', 'vote_profiles']
+		exclude = TIMESTAMP_EXCLUDE + _exclude
 
 
 class TicketCommentModelForm(forms.ModelForm):
 	class Meta:
 		model = TicketComment
-		exclude = TIMESTAMP_EXCLUDE
+		_exclude = ['ticket']
+		exclude = TIMESTAMP_EXCLUDE + _exclude
