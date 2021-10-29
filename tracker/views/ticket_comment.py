@@ -1,20 +1,10 @@
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import reverse
-from bug_tracker.constants import ALL_GROUPS, ADMINS, NOT_VIEWER, PAG_BY
+from bug_tracker.constants import ADMINS, NOT_VIEWER
 from tracker.models import Ticket, TicketComment
 from tracker.model_forms import TicketCommentModelForm
 from tracker.mixins import GroupsRequiredMixin
-
-
-# class TicketCommentListView(GroupsRequiredMixin, ListView):
-# 	model = TicketComment
-# 	template_name = 'tracker/models/ticket_comment/list.html'
-# 	groups = ALL_GROUPS
-# 	paginate_by = PAG_BY
-# 	extra_context = {
-# 		'model': TicketComment
-# 	}
 
 
 class TicketCommentCreateView(GroupsRequiredMixin, CreateView):
@@ -31,12 +21,6 @@ class TicketCommentCreateView(GroupsRequiredMixin, CreateView):
 
 	def get_success_url(self):
 		return self.object.get_absolute_url()
-
-
-# class TicketCommentDetailView(GroupsRequiredMixin, DetailView):
-# 	model = TicketComment
-# 	template_name = 'tracker/models/ticket_comment/detail.html'
-# 	groups = ALL_GROUPS
 
 
 class TicketCommentUpdateView(UserPassesTestMixin, UpdateView):
