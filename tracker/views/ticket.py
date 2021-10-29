@@ -6,21 +6,6 @@ from tracker.model_forms import TicketModelForm
 from tracker.mixins import GroupsRequiredMixin
 
 
-class TicketListView(GroupsRequiredMixin, ListView):
-	model = Ticket
-	template_name = 'tracker/models/ticket/list.html'
-	groups = ALL_GROUPS
-	paginate_by = PAG_BY
-	extra_context = {
-		'model': Ticket
-	}
-
-	def get_queryset(self):
-		tracker = Tracker.objects.get(pk=self.kwargs['tracker_pk'])
-		queryset = Ticket.objects.filter(tracker=tracker)
-		return queryset
-
-
 class TicketCreateView(GroupsRequiredMixin, CreateView):
 	model = Ticket
 	form_class = TicketModelForm

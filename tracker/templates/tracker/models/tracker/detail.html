@@ -10,7 +10,6 @@
         <p>Description: {{ object.description }}</p>
         <a class="btn btn-primary mb-3" href="{% url 'tracker:ticket-create' object.pk %}">Create Ticket</a>
         {% include 'tracker/models/tracker/ticket_table.html' %}
-        <a class="btn btn-primary" href="{% url 'tracker:ticket-list' object.pk %}">List of Tickets</a>
         <a class="btn btn-success" href="{{ object.get_update_url }}">Update Tracker</a>
         <a class="btn btn-danger" href="{{ object.get_delete_url }}">Delete Tracker</a>
     </div>
