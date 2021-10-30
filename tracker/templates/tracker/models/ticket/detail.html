@@ -12,24 +12,28 @@
             <a class="btn btn-success" href="{{ object.get_update_url }}">Update Ticket</a>
             <a class="btn btn-danger" href="{{ object.get_delete_url }}">Delete Ticket</a>
         </div>
-        <br>
-        <a class="btn btn-primary mb-3" href="{% url 'tracker:ticket-comment-create' object.tracker.pk object.pk %}">Create Comment</a>
-        <h3>Ticket Comments</h3>
-        {% if ticket.ticketcomment_set.all %}
-            {% for comment in ticket.ticketcomment_set.all %}
-                {% if user == comment.creator %}
-                    <p>
-                        {{ comment.title }}
-                        <a href="{% url 'tracker:ticket-comment-update' object.tracker.pk object.pk comment.pk%}">Update</a>
-                        <a href="{% url 'tracker:ticket-comment-delete' object.tracker.pk object.pk comment.pk%}">Delete</a>
-                    </p>
-                {% else %}
-                    <p>{{ comment.title }}</p>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <p>No comments!</p>
-        {% endif %}
+        <div>
+            <a class="btn btn-primary m-3" href="{% url 'tracker:ticket-comment-create' object.tracker.pk object.pk %}">Create Comment</a>
+        </div>
+        {% include 'tracker/models/ticket/comments.html' %}
+        <div>
+            <h3>Ticket Comments</h3>
+            {% if ticket.ticketcomment_set.all %}
+                {% for comment in ticket.ticketcomment_set.all %}
+                    {% if user == comment.creator %}
+                        <p>
+                            {{ comment.title }}
+                            <a href="{% url 'tracker:ticket-comment-update' object.tracker.pk object.pk comment.pk%}">Update</a>
+                            <a href="{% url 'tracker:ticket-comment-delete' object.tracker.pk object.pk comment.pk%}">Delete</a>
+                        </p>
+                    {% else %}
+                        <p>{{ comment.title }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>No comments!</p>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

@@ -19,3 +19,7 @@ body {
     padding: .8rem;
 }
 
+.my-card {
+    border: solid black 1px;
+}
+

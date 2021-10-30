@@ -1,9 +1,12 @@
 from django.urls import path
-from tracker.views import tracker, ticket, ticket_comment
+from tracker.views import tracker, ticket, ticket_comment, general
 
 
 app_name = 'tracker'
 urlpatterns = [
+	# GENERAL
+	path('dashboard/', general.Dashboard.as_view(), name='general'),
+
 	# TRACKER
 	path('list/', tracker.TrackerListView.as_view(), name='tracker-list'),
 	path('create/', tracker.TrackerCreateView.as_view(), name='tracker-create'),
@@ -21,6 +24,5 @@ urlpatterns = [
 	path('<int:tracker_pk>/ticket/<int:ticket_pk>/ticket-comment/create/', ticket_comment.TicketCommentCreateView.as_view(), name='ticket-comment-create'),
 	path('<int:tracker_pk>/ticket/<int:ticket_pk>/ticket-comment/update/<int:pk>/', ticket_comment.TicketCommentUpdateView.as_view(), name='ticket-comment-update'),
 	path('<int:tracker_pk>/ticket/<int:ticket_pk>/ticket-comment/delete/<int:pk>/', ticket_comment.TicketCommentDeleteView.as_view(), name='ticket-comment-delete'),
-
 
 ]
