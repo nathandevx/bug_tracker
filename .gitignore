@@ -6,3 +6,7 @@ temp/
 
 # Files
 db.sqlite3
+
+# Other
+__pycache__/
+*.py[cod]

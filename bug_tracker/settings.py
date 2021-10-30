@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',  # django-allauth
     'django.contrib.staticfiles',
 
     # MY APPS
@@ -38,7 +39,11 @@ INSTALLED_APPS = [
 
     # PACKAGE APPS
     'crispy_forms',
+    'allauth',
+    'allauth.account',
 ]
+
+SITE_ID = 1  # django-allauth
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',  # django-allauth
             ],
         },
     },
@@ -83,6 +89,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]  # django-allauth
 
 # General
 AUTH_USER_MODEL = 'users.User'
