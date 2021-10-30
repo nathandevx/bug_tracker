@@ -5,7 +5,7 @@ from tracker.views import tracker, ticket, ticket_comment, general
 app_name = 'tracker'
 urlpatterns = [
 	# GENERAL
-	path('dashboard/', general.Dashboard.as_view(), name='general'),
+	path('dashboard/', general.Dashboard.as_view(), name='dashboard'),
 
 	# TRACKER
 	path('list/', tracker.TrackerListView.as_view(), name='tracker-list'),
