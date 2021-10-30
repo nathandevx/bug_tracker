@@ -16,6 +16,7 @@ load_dotenv(dotenv_path=dotenv_path)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'templates'
+ALLAUTH_DIR = TEMPLATE_DIR / 'account'
 DB_DIR = BASE_DIR / 'db.sqlite3'
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'django-insecure-&th7f&(_3a6=f4g+mxm(tdtu%%u8w(xxl&bc=77=h%ut^tl8)v'
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+
 ]
 
 SITE_ID = 1  # django-allauth
@@ -60,7 +63,7 @@ ROOT_URLCONF = 'bug_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR, ALLAUTH_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
