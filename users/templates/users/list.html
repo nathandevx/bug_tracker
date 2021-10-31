@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}User List{% endblock %}
+
+
+{% block contents %}
+
+    <div class="container-fluid text-center width">
+        <h1>List of users</h1>
+        {% include 'users/user_table.html' %}
+    </div>
+
+{% endblock %}
