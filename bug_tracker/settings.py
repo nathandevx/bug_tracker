@@ -10,6 +10,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 from .constants import dotenv_path
+from django.urls import reverse_lazy
 import os
 
 load_dotenv(dotenv_path=dotenv_path)
@@ -101,6 +102,7 @@ AUTHENTICATION_BACKENDS = [
 # General
 AUTH_USER_MODEL = 'users.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = '/'  # allauth
 
 # Localization
 LANGUAGE_CODE = 'en-us'
@@ -114,3 +116,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [STATIC_PATH]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# DEV/PROD settings
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
