@@ -6,7 +6,7 @@
 
     <div class="container-fluid text-center width">
         <h1>Tracker Detail</h1>
-        <h3>{{ object }}</h3>
+        <h3>Name: {{ object }}</h3>
         <p>Description: {{ object.description }}</p>
         <a class="btn btn-primary mb-3" href="{% url 'tracker:ticket-create' object.pk %}">Create Ticket</a>
         {% include 'tracker/models/tracker/ticket_table.html' %}

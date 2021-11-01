@@ -1,1 +1,17 @@
-<h1>user detail</h1>
+{% extends 'base.html' %}
+{% block title %}User Detail{% endblock %}
+
+
+{% block contents %}
+
+    <div class="container-fluid text-center width">
+        <h1>User Detail</h1>
+        <h3>Username: {{ object }}</h3>
+        <p>Bio: {{ object.bio }}</p>
+        {% if access %}
+            <p>Actions: <a href="{% url 'account_email' %}">Change Email</a>  |  <a href="{% url 'account_change_password' %}">Change Password</a>  |  <a href="{{ object.get_update_url }}">Update Profile</a>  | <a class="link-danger" href="{{ object.get_delete_url }}">Delete Profile</a></p>
+        {% endif %}
+        {% include 'users/ticket_table.html' %}
+    </div>
+
+{% endblock %}

@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import reverse
 from bug_tracker.constants import ALL_GROUPS, PAG_BY, ADMINS
 from users.models import User
+from tracker.models import Ticket
 from users.model_forms import UserModelForm
 from tracker.mixins import GroupsRequiredMixin
 
@@ -23,6 +24,12 @@ class UserDetailView(GroupsRequiredMixin, DetailView):
 	model = User
 	template_name = 'users/detail.html'
 	groups = ALL_GROUPS
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['tickets'] = Ticket.objects.filter(creator=self.request.user)
+		context['access'] = self.object == self.request.user
+		return context
 
 
 class UserUpdateView(UserPassesTestMixin, UpdateView):
@@ -45,7 +52,7 @@ class UserDeleteView(UserPassesTestMixin, DeleteView):
 	template_name = 'users/delete.html'
 
 	def get_success_url(self):
-		return self.object.get_absolute_url()
+		return self.object.get_list_url()
 
 	def test_func(self):
 		is_creator = self.get_object() == self.request.user

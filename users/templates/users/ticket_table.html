@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ticket</th>
+                <th scope="col">Status</th>
+                <th scope="col">Tracker</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in tickets %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></td>
+                    <td>{{ obj.status }}</td>
+                    <td>{{ obj.tracker }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
