@@ -6,6 +6,10 @@ app_name = 'tracker'
 urlpatterns = [
 	# GENERAL
 	path('dashboard/', general.Dashboard.as_view(), name='dashboard'),
+	path('solved/', general.SolvedTicketListView.as_view(), name='solved'),
+	path('closed/', general.ClosedTicketListView.as_view(), name='closed'),
+	path('pending/', general.PendingTicketListView.as_view(), name='pending'),
+	path('open/', general.OpenTicketListView.as_view(), name='open'),
 
 	# TRACKER
 	path('list/', tracker.TrackerListView.as_view(), name='tracker-list'),

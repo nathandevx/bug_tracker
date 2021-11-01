@@ -58,7 +58,7 @@ class Ticket(TimestampMixin):
 		(FEATURE, 'Feature'),
 	]  # (stored, displayed)
 
-	# STATE CHOICES
+	# status CHOICES
 	OPEN = 'OPEN'
 	CLOSED = 'CLOSED'
 	IN_PROGRESS = 'IN PROGRESS'

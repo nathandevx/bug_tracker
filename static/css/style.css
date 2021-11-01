@@ -23,3 +23,8 @@ body {
     border: solid black 1px;
 }
 
+.card-link {
+    color: inherit;
+    text-decoration: none;
+}
+

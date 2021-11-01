@@ -1,6 +1,7 @@
 <h1 class="mt-4">Dashboard</h1>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item active">Home</li>
+    <li class="breadcrumb-item active"><a href="{% url 'home:home' %}">Home</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'tracker:tracker-list' %}">Bug Trackers</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'users:detail' user.pk %}">Profile</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'users:list' %}">Users</a></li>
-    <li class="breadcrumb-item active">Library</li>
 </ol>
