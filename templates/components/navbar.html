@@ -15,9 +15,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'tracker:dashboard' %}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tracker:tracker-list' %}">Trackers</a>
-                    </li>
+                    {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item" id="logout-nav-item">
                         <a class="nav-link" id="logout-nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
@@ -27,11 +29,6 @@
                     </li>
                     <li class="nav-item" id="signup-nav-item">
                         <a class="nav-link" id="signup-nav-link" href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                {% endif %}
-                {% if user.is_superuser %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
                     </li>
                 {% endif %}
             </ul>
