@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from bug_tracker.constants import ADMINS, ALL_GROUPS, PAG_BY
-from tracker.models import Tracker, Ticket
+from tracker.models import Tracker
 from tracker.model_forms import TrackerModelForm
 from tracker.mixins import GroupsRequiredMixin
 
